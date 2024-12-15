@@ -10,7 +10,9 @@ import (
 
 func ProcessReceipt(w http.ResponseWriter, r *http.Request) {
 	var receipt models.Receipt
+	println(json.NewDecoder(r.Body))
 	err := json.NewDecoder(r.Body).Decode(&receipt)
+	println(&receipt)
 	if err != nil {
 		http.Error(w, "Invalid receipt format. Please verify input", http.StatusBadRequest)
 		return
